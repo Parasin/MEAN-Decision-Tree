@@ -1,0 +1,24 @@
+<h2>{{ appSet.title }}</h2>
+Filter: <br>
+<input type="text" ng-model="customerFilter" />
+<br /><br />
+<table class="table">
+    <tr>
+        <th ng-click="doSort('name')">Name</th>
+        <th ng-click="doSort('city')">City</th>
+        <th ng-click="doSort('joined')">Joined On</th>
+        <th ng-click="doSort('orderTotal')">Order Total</th>
+        <th>Orders</th>
+        <th align="center">Delete?</th>
+    </tr>
+    <tr ng-repeat="cust in customers | filter: customerFilter | orderBy: sortBy: reverse" class="repeat-an">
+        <td>{{ cust.name }}</td>
+        <td>{{ cust.city }}</td>
+        <td>{{ cust.joined | date: medium}}</td>
+        <td>{{ cust.orderTotal | currency}}</td>
+        <td><a href="#/orders/{{ cust.id }}"><div>View orders</div></a></td>
+        <td><span ng-click="deleteCust(cust.id)" class="glyphicon glyphicon-remove center" aria-hidden="true"></span></td>
+    </tr>
+</table>
+<br />
+<span>Total customers: {{ customers.length }}</span>

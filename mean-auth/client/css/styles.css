@@ -1,0 +1,23 @@
+#header {
+    margin-top: 4em;
+}
+
+#removeOrder {
+    padding: 3px 3px;
+    margin-left: 25%;
+}
+
+.tblHeader {
+    cursor: pointer;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.tblHeader:hover {
+    background-color: cornflowerblue;
+}
+
+.center {
+    text-align: center;
+}
