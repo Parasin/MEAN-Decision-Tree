@@ -28,8 +28,10 @@ body {
   color: #333;
   background-color: #fff;
   padding: 20px;
-  max-width: 720px;
+  max-width: 730px;
   margin: 0 auto;
+  border-right: 2px solid #ccc;
+  border-left: 2px solid #ccc;
 }
 
 body>*:first-child {
@@ -313,6 +315,14 @@ img {
 4.  Knowledge training (for Zhach) 
 </code></pre>
 
+<h5>(12/28/15)</h5>
+<p>Evan has created a basic application and created a Github project to house the code. Zhachory has updated the documentation to use markdown to be shown in a browser easily. Evan has also started creating an API for editing the tree in the Admin view. </p>
+<pre><code>What needs to be done?
+
+1.  Evan finishes the API for admin tree editing
+2.  Zhach starts user view and controller
+</code></pre>
+
 <h2>Table of Contents</h2>
 <ol>
 <li>
@@ -361,15 +371,16 @@ img {
 <p><a name="admin"></a></p>
 <h3>Admin View</h3>
 <p>The Admin page will be where the admin user can edit the tree that they selected in the home page or where the logged in from if they were already traversing a tree from the user side. The can add nodes, delete nodes, edit the labels of nodes, and arrange the nodes in different ways</p>
-<pre><code>Details about how the admin user may do this will be described in detail at a later date.
-</code></pre>
-
+<p>The admin view will be divided into two sections, the tree view and the user interface. </p>
+<p>The tree view will have the graphic representation of the current tree in view. Users may use the mouse to move around the tree to see the different nodes and edges around the tree with their corresponding ID number. The user cannot edit the tree using the tree view.</p>
+<p>The user interface is where all the editing will take place. There will be two sections: one with node options and one with edge options. The node section will have a create, update, and delete button along with a form. The edge section will only have the update button along with a form. Whenever a user fills out the node/edge form and click update, the node/edge with that ID will updated with the new information. Whenever a user clicks on create in the node section, a form will pop up with a parent-id field, a label for the edge (an answer to the parent's label), and a label for the node. This will create a new node and edge inside the tree. When the user clicks on delete in the node section, a form will pop up with an ID field. This will delete the node corresponding to that ID, the children of that node. And all the edges in between. </p>
+<p>Any changes done in the user interface will be shown in the tree view automatically.</p>
 <p><img src="admin.png" alt="Admin Template" /></p>
 <h2>Back-End</h2>
 <p>The back-end consists of every the user does not see. This includes the database, the algorithm required to traverse the Decision Tree, and the structure of the website.</p>
 <p><a name="mean"></a></p>
 <h3>MEAN Stack</h3>
-<p>We will be using the MEAN stack instead of LAMP or WAMP because of its flexibility and its use of JSON. It uses for applications together to make a server: </p>
+<p>We will be using the MEAN stack instead of LAMP or WAMP because of its flexibility and its use of JSON. It uses four applications together to make a server: </p>
 <ol>
 <li><code>MongoDB</code> – For database storage</li>
 <li><code>Express.js</code> – Web framework for <code>Node.js</code> to quickly make web applications</li>
@@ -407,7 +418,7 @@ Nodes will contain all the information 1 node will need to show the statement an
 <p><a name="node"></a></p>
 <h3>Node Traversing</h3>
 <p>How the application will work and traverse through the trees will be based on a hash traversal. The application will hold all the Nodes and Edges in a table and access a tree’s nodes and edges, then traverse them like a hash. The application can get the left child by taking the id of the node and multiply it by 2. To get the right child, the application will take the id of the node and multiply it by 2 and add 1.</p>
-<p>Since some paths are longer than others and the application must have a complete tree to have a hash, the application will house null nodes to put in place of some spots to keep the tree complete. </p>
+<p>Since some paths are longer than others, we cannot have a true hash. But to still have that functionality, whenever a new node is made, the </p>
 
 </body>
 </html>

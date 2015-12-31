@@ -21,6 +21,15 @@ The team has divided up the work according to the capabilities. Evan will be wor
 	3.	Hardware setup
 	4.	Knowledge training (for Zhach) 
 
+#####(12/28/15)
+Evan has created a basic application and created a Github project to house the code. Zhachory has updated the documentation to use markdown to be shown in a browser easily. Evan has also started creating an API for editing the tree in the Admin view. 
+
+
+	What needs to be done?
+	
+	1.	Evan finishes the API for admin tree editing
+	2.	Zhach starts user view and controller
+
 
 ##Table of Contents
 1.	[Front-End](#frontend)
@@ -70,14 +79,19 @@ Each panel will contain the label of that node. The label usually consists of a 
 
 The navigation bar will still have the admin login button (in case admins are doing debugging) and will also have a home button, which will allow them to travel all the way back to the home page.
 
-
 ![User Template](user.png)
 
 <a name="admin"></a>
 ###Admin View
 The Admin page will be where the admin user can edit the tree that they selected in the home page or where the logged in from if they were already traversing a tree from the user side. The can add nodes, delete nodes, edit the labels of nodes, and arrange the nodes in different ways
 
-	Details about how the admin user may do this will be described in detail at a later date.
+The admin view will be divided into two sections, the tree view and the user interface. 
+
+The tree view will have the graphic representation of the current tree in view. Users may use the mouse to move around the tree to see the different nodes and edges around the tree with their corresponding ID number. The user cannot edit the tree using the tree view.
+
+The user interface is where all the editing will take place. There will be two sections: one with node options and one with edge options. The node section will have a create, update, and delete button along with a form. The edge section will only have the update button along with a form. Whenever a user fills out the node/edge form and click update, the node/edge with that ID will updated with the new information. Whenever a user clicks on create in the node section, a form will pop up with a parent-id field, a label for the edge (an answer to the parent's label), and a label for the node. This will create a new node and edge inside the tree. When the user clicks on delete in the node section, a form will pop up with an ID field. This will delete the node corresponding to that ID, the children of that node. And all the edges in between. 
+
+Any changes done in the user interface will be shown in the tree view automatically.
 
 ![Admin Template](admin.png)
 
@@ -87,7 +101,7 @@ The back-end consists of every the user does not see. This includes the database
 
 <a name="mean"></a>
 ###MEAN Stack
-We will be using the MEAN stack instead of LAMP or WAMP because of its flexibility and its use of JSON. It uses for applications together to make a server: 
+We will be using the MEAN stack instead of LAMP or WAMP because of its flexibility and its use of JSON. It uses four applications together to make a server: 
 
 1.	`MongoDB` – For database storage
 2.	`Express.js` – Web framework for `Node.js` to quickly make web applications
@@ -130,4 +144,4 @@ Users will contain basic information of the admin users and their login credenti
 ###Node Traversing
 How the application will work and traverse through the trees will be based on a hash traversal. The application will hold all the Nodes and Edges in a table and access a tree’s nodes and edges, then traverse them like a hash. The application can get the left child by taking the id of the node and multiply it by 2. To get the right child, the application will take the id of the node and multiply it by 2 and add 1.
 
-Since some paths are longer than others and the application must have a complete tree to have a hash, the application will house null nodes to put in place of some spots to keep the tree complete. 
+Since some paths are longer than others, we cannot have a true hash. But to still have that functionality, whenever a new node is made, the 
