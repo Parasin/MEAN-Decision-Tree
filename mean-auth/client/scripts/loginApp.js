@@ -55,8 +55,8 @@ loginApp.config(function ($routeProvider) {
             permLevel: 0
       }
     })
-    .when('/three', {
-        template: '<h1>This is a members only section with permission level restrictions</h1>',
+    .when('/admin', {
+        templateUrl: 'partials/admin.html',
         access: {
             restricted: true,
             permLevel: 1   
