@@ -99,3 +99,70 @@ loginApp.controller('custController',
 		init();
 }]);
 
+loginApp.controller('mainController', ['$scope', '$log', function($scope, $log){
+    $scope.nodeId;
+    $scope.nodeLabel;
+    $scope.edgeLabel;
+    $scope.node;
+    $scope.nodes = nodes.get();
+    $scope.edge;
+    $scope.edges = edges.get();
+    $scope.state = "add";
+    $scope.parentNodeId;
+    $scope.reverse = false;
+    $scope.doSort = function(propName) {
+        $scope.sortBy = propName; 
+        $scope.reverse = !$scope.reverse;
+    };
+
+    $scope.addNode = function () {
+        try {
+            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
+            $scope.edge = {id: edges.length + 1, from: $scope.parentNodeId, to: $scope.node.id, label: $scope.edgeLabel};
+            $scope.nodes.push($scope.node);
+            nodes.add($scope.node);
+           
+            $scope.edges.push($scope.edge);
+            edges.add($scope.edge);
+            $scope.nodes = nodes.get();
+            $scope.edges = edges.get();
+           
+            
+            
+            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = $scope.parentNodeId =  '';
+        }
+        catch (err) {
+            alert(err);
+        }
+    };
+    
+    $scope.updateNode = function () {
+        try {
+            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
+            nodes.update($scope.node);
+            
+            $scope.nodes = nodes.get();
+            $scope.edges = edges.get();
+            
+            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = '';
+        }
+        catch (err) {
+            alert(err);
+        }
+    };
+    
+    $scope.deleteNode = function () {
+        try {
+            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
+            nodes.remove($scope.node);
+           
+            $scope.nodes = nodes.get();
+            $scope.edges = edges.get();
+            
+            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = '';
+        } 
+        catch (err) {
+            alert(err);
+        }
+    };
+}]);
