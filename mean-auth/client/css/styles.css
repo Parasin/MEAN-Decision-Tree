@@ -36,7 +36,6 @@ tr>td, .tblHeader {
     text-align: center;
 }
 
-<<<<<<< HEAD
 #mynetwork {
     position: relative;
     width: 100%;
@@ -52,14 +51,14 @@ tr>td, .tblHeader {
 .footer {
     width: 100%;
     margin: 0;
-=======
+}
+
 body {
 	font-family: Century Gothic !important;
 	background-color: #f5f5f5;
 }
 
 #view {
-	border-radius: 10px;
 	
 }
 
@@ -104,5 +103,4 @@ body {
 		left: 25vw;
 		text-align: center;
 	}	
->>>>>>> refs/remotes/origin/master
 }
