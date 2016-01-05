@@ -9,8 +9,16 @@
             overflow-y: scroll;
         }
         
+        .labels {
+            width: 121px;
+        }
+        
         .footer {
             margin-top: 1em;
+        }
+        
+        .nodeTabs {
+            width: 120px;
         }
     </style>
 </head>
@@ -77,12 +85,13 @@
             </div>
 
             <div class="col-xs-6">
-                <ul class="nav nav-tabs">
-                    <li role="presentation"><a href="" ng-click="state = 'add'">Add Node</a></li>
-                    <li role="presentation"><a href="" ng-click="state = 'update'">Update Node</a></li>
-                    <li role="presentation"><a href="" ng-click="state = 'delete'">Delete Node</a></li>
-                </ul><br/>
-                
+                <div class="col-xs-12">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation"><a class="nodeTabs" style="margin-right: 1.5em" href="" ng-click="state = 'add'">Add Node</a></li>
+                        <li role="presentation"><a class="nodeTabs" style="margin: 0 1em 0 1em" href="" ng-click="state = 'update'">Update Node</a></li>
+                        <li role="presentation"><a class="nodeTabs" style="margin-left: 2em" href="" ng-click="state = 'delete'">Delete Node</a></li>
+                    </ul><br/>
+                </div>
                 <div class="panel panel-default">
                     <div class="container-fluid" ng-show="state === 'add'">
                         <div class="panel-heading">
