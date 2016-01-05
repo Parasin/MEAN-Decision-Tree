@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us" ng-app="loginApp">
     <head>
-        <title>Angular Auth</title>
+        <title>Support Decision Tree</title>
         <link rel="shortcut icon" href="css/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta charset="UTF-8">
@@ -12,25 +12,29 @@
     </head>
 
     <body>
-        
-        <nav class="navbar navbar-default" style="margin: 0">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand lead" href="/">AngularJS Login</a>
+        <nav class="navbar navbar-fixed-bottom">
+			<div class="container-fluid">
+				<div class="navbar-header center">
+					<h1><a href="/">Support Decision Tree</a></h1>
 				</div>
-
-				<ul ng-controller="navController" class="nav navbar-nav navbar-right">
-					<li ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
-                    <li ng-class="{active: isActive('/register')}"><a href="#/register">Register</a></li>
-                    <li ng-class="{active: isActive('/login')}"><a href="#/login">Login</a></li>
-                    <li ng-controller="logoutController"><a ng-click='logout()' href="">Logout</a></li>
-				</ul>
+                <div class="navbar-collapse collapse center">
+    				<ul ng-controller="navController" class="nav navbar-nav">
+    					<li ng-class="{active: isActive('/')}"><a href="#/"> Home</a></li><li>&nbsp;</li>
+                        <li ng-class="{active: isActive('/register')}"><a href="#/register">Register</a></li><li>&nbsp;</li>
+                        <li ng-class="{active: isActive('/login')}"><a href="#/login">Login</a></li><li>&nbsp;</li>
+                        <li ng-controller="logoutController"><a ng-click='logout()' href="">Logout</a></li>
+    				</ul>
+                </div>
 			</div>
         </nav>
               
-        <div class="col-xs-12 col-md-12" id="header">
-            <div ng-view></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div ng-view id="view" class="col-md-12">
+                </div>
+            </div>
         </div>
+
         <script src="scripts/jquery.min.js"></script>
         <script src="scripts/angular.min.js"></script>
         <script src="scripts/bootstrap.min.js"></script>
@@ -41,6 +45,12 @@
         <script src="scripts/factory.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/controllers.js"></script>
-        <script src="scripts/directives.js"></script>    
+        <script src="scripts/directives.js"></script>   
+
+        <script type="text/javascript">
+            setInterval(function() {
+                console.log($(document).width());
+            }, 1000);
+        </script> 
     </body>
 </html>

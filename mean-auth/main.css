@@ -1,0 +1,10 @@
+body {
+	background:  url("back.jpg") no-repeat fixed center; 
+	background-size: cover;
+}
+
+#view {
+	height: 90vh;
+	background-color: white;
+	border-radius: 20px;
+}
