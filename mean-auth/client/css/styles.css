@@ -23,7 +23,7 @@ tr>td, .tblHeader {
     cursor: pointer;
 }
 
-.tblHeader:hover,  tr>td:hover {
+.tblHeader:hover, tr>td:hover {
     background-color: #337AB7;
     color: #FFFFFF;
 }
@@ -42,6 +42,7 @@ tr>td, .tblHeader {
     height: 40em;
     border: 1px solid lightgray;
     margin-top: 2em;
+    margin-bottom: 6em;
 }
 
 .labels {
@@ -62,10 +63,34 @@ body {
 	
 }
 
-.nav > li > a:hover {
-	background-color: rgba(0, 37, 97, 0.5) !important;
+nav {
+    background-color: rgba(91, 91, 91, 0.95);
+}
+
+.header {
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.header:hover {
+    color: #f5f5f5 !important;
+}
+
+.navBtn{
+    -webkit-transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.navBtn:hover{
+	background-color: rgba(234, 234, 234, 0.5) !important;
 	color: #f5f5f5 !important;
 	text-decoration: none !important;
+}
+
+.navbar a {
+	color: #d6d6d6;
 }
 
 .navbar a:hover {
@@ -76,11 +101,7 @@ body {
     text-decoration: : none;
 }
 
-.navbar a {
-	color: #3a3a3a;
-}
-
-.navbar-header > h1 > a {
+.navbar-header>h1>a {
 	position: relative;
 	bottom: 15px;
 }
@@ -88,23 +109,21 @@ body {
 .navbar .navbar-nav {
     display: inline-block;
     float: none;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
-.nav > li {
+.nav>li {
 	width: 100px;
 	text-align: center;
 }
 
-@media screen and (max-width: 1105px) {
+@media screen {
 	.navbar .navbar-header {
 	    display: inline-block;
-	    float: none;
-	    vertical-align: top;
+	    vertical-align: middle;
 	}
 	.navbar-header h1{
 		position: relative;	
-		left: 25vw;
 		text-align: center;
 	}	
 }

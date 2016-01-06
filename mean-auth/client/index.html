@@ -12,26 +12,23 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-fixed-bottom">
+        <nav class="col-xs-12 navbar navbar-fixed-bottom" style="height: 40px">
 			<div class="container-fluid">
-				<div class="navbar-header center">
-					<h1><a href="#/">Support Decision Tree</a></h1>
+				<div class="navbar-header">
+					<h1><a href="#/" class="noUnderline header">Support Decision Tree</a></h1>
 				</div>
-                <div class="navbar-collapse collapse center">
-    				<ul ng-controller="navController" class="nav navbar-nav">
-    					<li ng-class="{active: isActive('/')}"><a href="#/"> Home</a></li><li>&nbsp;</li>
-                        <li ng-class="{active: isActive('/register')}"><a href="#/register">Register</a></li><li>&nbsp;</li>
-                        <li ng-class="{active: isActive('/login')}"><a href="#/login">Login</a></li><li>&nbsp;</li>
-                        <li ng-controller="logoutController"><a ng-click='logout()' href="">Logout</a></li>
-    				</ul>
-                </div>
+                <ul ng-controller="navController" class="nav navbar-nav  navbar-right navbar-collapse collapse">
+                    <li ng-class="{active: isActive('/')}"><a href="#/" class="noUnderline navBtn"> Home</a></li>
+                    <li ng-class="{active: isActive('/register')}"><a href="#/register" class="noUnderline navBtn">Register</a></li>
+                    <li ng-class="{active: isActive('/login')}"><a href="#/login" class="noUnderline navBtn">Login</a></li>
+                    <li ng-controller="logoutController"><a ng-click='logout()' href="" class="noUnderline navBtn">Logout</a></li>
+                </ul>
 			</div>
         </nav>
               
         <div class="container-fluid">
             <div class="row">
-                <div ng-view id="view" class="col-md-12">
-                </div>
+                <div ng-view id="view" class="col-xs-12"></div>
             </div>
         </div>
 
@@ -45,6 +42,40 @@
         <script src="scripts/factory.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/controllers.js"></script>
-        <script src="scripts/directives.js"></script>   
+        <script src="scripts/directives.js"></script>
+        <script>
+            $( document ).ready(function() {
+                var height = $( document ).height();
+                var navVis = false;
+                setTimeout(navDown, 2500);
+                $( window ).resize(function() {
+                   height = $( window ).height();
+                });
+                
+                function navUp() {
+                    $( "nav" ).show("slow");
+                    navVis = true;
+                }
+                
+                function navDown() {
+                    $( "nav" ).hide("slow");
+                    navVis = false;
+                }
+                
+                $( document ).on("mousemove", function(event) {
+                    if (event.clientY >= height - 50 && navVis === false) {
+                        if (!$( this ).is( ":animated" )){
+                            setTimeout(navUp, 300);
+                        }
+                        
+                    }
+                    if (event.clientY < height - 50 && navVis === true){
+                       if (!$( this ).is( ":animated" )){
+                            setTimeout(navDown, 500);
+                        }
+                    }
+                });  
+            });
+        </script>
     </body>
 </html>

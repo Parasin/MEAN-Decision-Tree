@@ -58,7 +58,7 @@ loginApp.config(function ($routeProvider) {
     .when('/admin', {
         templateUrl: 'partials/admin.html',
         access: {
-            restricted: true,
+            restricted: false,
             permLevel: 1   
         }
     })
