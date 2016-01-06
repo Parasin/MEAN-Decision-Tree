@@ -166,3 +166,33 @@ loginApp.controller('mainController', ['$scope', '$log', function($scope, $log){
         }
     };
 }]);
+
+loginApp.controller('userController', ['$scope', '$log', '$timeout', function($scope, $log, $timeout){ 
+    $scope.node = getNode();
+    $scope.answers = getEdges();
+    $scope.lastNode = [];
+    $scope.change = false;
+
+    $scope.changeNode = function(node, back) {
+        try {
+            if(!back) {
+                $scope.lastNode.push($scope.node.id); 
+            }
+            $scope.change = true;
+            $timeout(function() {
+                $scope.node = getNode(node);
+                $scope.answers = getEdges(node);
+                $scope.change = false;
+            }, 500);
+        } catch(e) {
+            console.log(e.message);
+        }
+    };
+
+    $scope.startOver = function() {
+        $scope.node = getNode();
+        $scope.answers = getEdges();
+        $scope.lastNode = [];
+        $scope.change = false;
+    }
+}]);

@@ -62,6 +62,13 @@ loginApp.config(function ($routeProvider) {
             permLevel: 1   
         }
     })
+    .when('/user', {
+        templateUrl: 'partials/user.html',
+        access: {
+            restricted: false,
+            permLevel: 1   
+        }
+    })
     .otherwise({
       redirectTo: '/'
     });
