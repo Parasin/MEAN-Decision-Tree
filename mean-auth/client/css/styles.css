@@ -72,6 +72,10 @@ body {
 	text-decoration: none !important;
 }
 
+.noUnderline {
+    text-decoration: : none;
+}
+
 .navbar a {
 	color: #3a3a3a;
 }

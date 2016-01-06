@@ -18,7 +18,8 @@
         }
         
         .nodeTabs {
-            width: 120px;
+            width: 140px;
+            overflow-x: show;
         }
     </style>
 </head>
@@ -87,9 +88,9 @@
             <div class="col-xs-6">
                 <div class="col-xs-12">
                     <ul class="nav nav-tabs">
-                        <li role="presentation"><a class="nodeTabs" style="margin-right: 1.5em" href="" ng-click="state = 'add'">Add Node</a></li>
-                        <li role="presentation"><a class="nodeTabs" style="margin: 0 1em 0 1em" href="" ng-click="state = 'update'">Update Node</a></li>
-                        <li role="presentation"><a class="nodeTabs" style="margin-left: 2em" href="" ng-click="state = 'delete'">Delete Node</a></li>
+                        <li class="nodeTabs" role="presentation" style="margin-right: 3em"><a class="nodeTabs" href="" ng-click="state = 'add'">Add Node</a></li>
+                        <li class="nodeTabs" role="presentation" style="margin-right: 3.3em"><a class="nodeTabs" href="" ng-click="state = 'update'">Update Node</a></li>
+                        <li class="nodeTabs" role="presentation"><a class="nodeTabs" href="" ng-click="state = 'delete'">Delete Node</a></li>
                     </ul><br/>
                 </div>
                 <div class="panel panel-default">
