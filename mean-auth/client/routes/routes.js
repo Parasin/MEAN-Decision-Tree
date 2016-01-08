@@ -39,8 +39,8 @@ loginApp.config(function ($routeProvider) {
             permLevel: 2
       }
     })
-    .when('/two', {
-      template: '<h1>This is page two!</h1>',
+    .when('/user', {
+      templateUrl: 'partials/user.html',
       access: {
             restricted: false,
             permLevel: 0
