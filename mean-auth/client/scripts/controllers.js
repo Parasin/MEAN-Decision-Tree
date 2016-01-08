@@ -10,8 +10,8 @@ loginApp.controller('navController',
 
 /* Login controller */
 loginApp.controller('loginController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
+  ['$scope', '$location', 'authFactory',
+  function ($scope, $location, authFactory) {
     $scope.login = function () {
 
       // initial values
@@ -19,7 +19,7 @@ loginApp.controller('loginController',
       $scope.disabled = true;
 
       // call login from service
-      AuthService.login($scope.loginForm.username, $scope.loginForm.password)
+      authFactory.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function () {
           $location.path('/');
@@ -38,8 +38,8 @@ loginApp.controller('loginController',
 
 /* Register controller */
 loginApp.controller('registerController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
+  ['$scope', '$location', 'authFactory',
+  function ($scope, $location, authFactory) {
     $scope.register = function () {
 
       // initial values
@@ -47,7 +47,7 @@ loginApp.controller('registerController',
       $scope.disabled = true;
 
       // call register from service
-      AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+      authFactory.register($scope.registerForm.username, $scope.registerForm.password)
         // handle success
         .then(function () {
           $location.path('/login');
@@ -66,40 +66,20 @@ loginApp.controller('registerController',
 
 /* Logout controller */
 loginApp.controller('logoutController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
+  ['$scope', '$location', 'authFactory',
+  function ($scope, $location, authFactory) {
 
     $scope.logout = function () {
 
       // call logout from service
-      AuthService.logout()
+      authFactory.logout()
         .then(function () {
           $location.path('/login');
         });
     };
 }]);
 
-/* Customer table controller */
-loginApp.controller('custController', 
-    ['$scope', '$log', '$routeParams', 'customerFactory',
-    function ($scope, $log, $routeParams, customerFactory) {
-        $scope.sortBy = 'name';
-		$scope.reverse = false;
-		$scope.customers = [];
-
-        function init() {
-            $scope.customers = customerFactory.getCusts();
-        }
-
-		$scope.doSort = function(propName) {
-			$scope.sortBy = propName; 
-			$scope.reverse = !$scope.reverse;
-		};
-	
-		init();
-}]);
-
-loginApp.controller('mainController', ['$scope', '$log', function($scope, $log){
+loginApp.controller('mainController', ['$scope', '$log', 'treeFactory', function($scope, $log, treeFactory){
     $scope.nodeId;
     $scope.nodeLabel;
     $scope.edgeLabel;
@@ -114,85 +94,8 @@ loginApp.controller('mainController', ['$scope', '$log', function($scope, $log){
         $scope.sortBy = propName; 
         $scope.reverse = !$scope.reverse;
     };
-
-    $scope.addNode = function () {
-        try {
-            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
-            $scope.edge = {id: edges.length + 1, from: $scope.parentNodeId, to: $scope.node.id, label: $scope.edgeLabel};
-            $scope.nodes.push($scope.node);
-            nodes.add($scope.node);
-           
-            $scope.edges.push($scope.edge);
-            edges.add($scope.edge);
-            $scope.nodes = nodes.get();
-            $scope.edges = edges.get();
-           
-            
-            
-            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = $scope.parentNodeId =  '';
-        }
-        catch (err) {
-            alert(err);
-        }
-    };
     
-    $scope.updateNode = function () {
-        try {
-            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
-            nodes.update($scope.node);
-            
-            $scope.nodes = nodes.get();
-            $scope.edges = edges.get();
-            
-            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = '';
-        }
-        catch (err) {
-            alert(err);
-        }
-    };
-    
-    $scope.deleteNode = function () {
-        try {
-            $scope.node = {id: $scope.nodeId, label: $scope.nodeLabel};
-            nodes.remove($scope.node);
-           
-            $scope.nodes = nodes.get();
-            $scope.edges = edges.get();
-            
-            $scope.nodeId = $scope.nodeLabel = $scope.edgeLabel = '';
-        } 
-        catch (err) {
-            alert(err);
-        }
-    };
-}]);
-
-loginApp.controller('userController', ['$scope', '$log', '$timeout', function($scope, $log, $timeout){ 
-    $scope.node = getNode();
-    $scope.answers = getEdges();
-    $scope.lastNode = [];
-    $scope.change = false;
-
-    $scope.changeNode = function(node, back) {
-        try {
-            if(!back) {
-                $scope.lastNode.push($scope.node.id); 
-            }
-            $scope.change = true;
-            $timeout(function() {
-                $scope.node = getNode(node);
-                $scope.answers = getEdges(node);
-                $scope.change = false;
-            }, 500);
-        } catch(e) {
-            console.log(e.message);
-        }
-    };
-
-    $scope.startOver = function() {
-        $scope.node = getNode();
-        $scope.answers = getEdges();
-        $scope.lastNode = [];
-        $scope.change = false;
-    }
+    $scope.addNode = treeFactory.addNode;
+    $scope.updateNode = treeFactory.updateNode;
+    $scope.deleteNode = treeFactory.deleteNode;
 }]);

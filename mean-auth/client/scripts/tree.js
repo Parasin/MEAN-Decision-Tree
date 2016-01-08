@@ -1,7 +1,7 @@
 var nodes = new vis.DataSet([
     {id: 0, label: 'Duplicate Site Node ID'},
     {id: 1, label: 'Is this the correct site'},
-    {id: 3, label: 'Remove the node from the incorrect site, then try again'},
+    {id: 3, label: 'Remove the node from the incorrect site\n and try again'},
     {id: 2, label: 'Remove the node from this site'},
     {id: 5, label: 'Problem resolved'},
     {id: 4, label: 'Open a support ticket'},
@@ -31,12 +31,6 @@ var data = {
 };
 
 var options = {
-    configure: {
-        enabled: false,
-        filter: 'nodes,edges',
-        container: document.getElementById('configure'),
-        showButton: false
-    },
     "nodes": {
         "borderWidthSelected": 1,
         "color": {
